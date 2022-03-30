@@ -18,9 +18,19 @@
   transition: all 1s;
 }
 
+.white-bg {
+  background: white;
+  border-radius: 5px;
+  padding: 30px;
+}
+
 .show-modal {
   visibility: visible;
   opacity: 1;
+}
+
+.close-modal {
+  visibility: none;
 }
 
 .alert-box {
