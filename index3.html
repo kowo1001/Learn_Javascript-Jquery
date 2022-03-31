@@ -14,31 +14,33 @@
   </head>
   <body>
 
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <span class="navbar-brand">JSShop</span>
+        <span class="badge bg-dark">Dark</span>
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+
+
     <div class="black-bg">
       <div class="white-bg">
         <h4>로그인하세요</h4>
             <form action="success.html">
                 <div class="my-3">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" id="email">
                 </div>
                 <div class="my-3">
-                <input type="password" class="form-control">
+                <input type="password" class="form-control" id="password">
                 </div>
                 <button type="submit" class="btn btn-primary">전송</button>
                 <button type="button" class="btn btn-danger" id="close">닫기</button>
             </form> 
-        <button class="btn btn-danger" id="close">닫기</button>
       </div>
     </div>
-
-    <nav class="navbar navbar-light bg-light">
-      <div class="container-fluid">
-        <span class="navbar-brand">Navbar</span>
-        <button class="navbar-toggler" type="button">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </nav> 
 
     <ul class="list-group">
       <li class="list-group-item">An item</li>
@@ -48,24 +50,74 @@
       <li class="list-group-item">And a fifth one</li>
     </ul>
 
-    <p class="hello">안녕</p>
-    <p class="hello">안녕</p>
-    <p class="hello">안녕</p>
     <button id="test-btn">버튼</button>
 
     <button id="login-btn">로그인</button>
 
-    <!-- <div class="main-bg">
-        <h4>Shirts on Sale</h4>
-        <button id="login" class="btn btn-danger">로그인</button>
-    </div> -->
-
-
 
     <script>
-      $('.hello').html('바보')
-      $('.hello').css('color', 'red')
-      $('.hello').addClass('show')
+      var first = 360;
+      if (first == 90) {
+        first = first * (2/3) *2 + 60
+        console.log('60');
+      } else {
+        first = first* (2/3) *2 + 40
+        console.log('40');
+      }
+
+ 
+
+
+
+      var 나이 = '32';
+      const 출신지역 = '서울';
+
+      var 예금액 = 60000;
+      var 미래예금액 = 0;
+
+      if ( 예금액 < 50000 ) {
+        예금액 = 예금액 * 0.15;
+      } else if (예금액 >= 50000) {
+        예금액 = 예금액 * 0.2;
+      }
+
+      console.log(미래예금액)
+
+
+      // badge 클릭 횟수를 기록해보자 
+      var count = 0;
+      
+      $('.badge').on('click', function() {
+        count += 1;
+        if (count % 2 == 0) {
+          $('.badge').html('Dark');
+        } else {
+          $('.badge').html('Light');
+        }
+        // badge 클릭횟수가 홀수면 내부 글자를 Light로 변경
+        // badge 클릭횟수가 짝수면 내부 글자를 Dark로 변경
+
+      })
+
+      document.getElementById('email').addEventListener('input', function() {
+        console.log('안녕');
+      })
+
+      $('form').on('submit', function(e){
+        if (document.getElementById('email').value == '' && document.getElementById('password').value == '') {
+          alert('아이디와 비번을 입력해주세요')
+          e.preventDefault();
+        } else if (document.getElementById('email').value == '') {
+          alert('아이디입력안함')
+          e.preventDefault();
+        } else if(document.getElementById('password').value == '') {
+          alert('비번입력안함')
+          e.preventDefault();
+        } else if (document.getElementById('password').value.length < 6) {
+          alert('비번을 7자리 이상 입력해주세요')
+          e.preventDefault();
+        }
+      });
 
       $('#login-btn').on('click', function() {
         $('.black-bg').addClass('show-modal')
@@ -74,10 +126,6 @@
       $('#close').on('click', function(){
         $('.black-bg').removeClass('show-modal')
         $('.black-bg').addClass('close-modal')
-      })
-
-      $('#test-btn').on('click', function() {
-        $('.hello').slideUp()
       })
       
       $('.navbar-toggler').on('click', function() {
