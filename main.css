@@ -1,3 +1,7 @@
+:root {
+  scroll-behavior: auto;
+}
+
 .list-group {
   display: none;
 }
@@ -39,4 +43,32 @@
   color: white;
   border-radius: 5px;
   display: none;
+}
+
+.slide-container {
+  width: 300vw;  
+  /* margin-left: -200vw; */
+  transition: all 1s;
+  transform: translate(-100vw);
+}
+
+.slide-box {
+  width: 100vw;
+  float: left;
+}
+
+.slide-box img {
+  width: 100%;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+}
+
+.navbar-brand {
+  font-size: 25px;
+  transition: all 1s;
+  
 }
