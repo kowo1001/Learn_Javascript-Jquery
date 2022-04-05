@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="main.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Document</title>
+  </head>
+  <body>
+
+    <form class="container my-5 form-group">
+        <p>상품선택</p>
+        <select class="form-select mt-2">
+          <option>모자</option>
+          <option>셔츠</option>
+          <option>바지</option>
+        </select>
+        <select class="form-select mt-2 form-hide">
+            <option>95</option>
+            <option>100</option>
+        </select>
+    </form>
+
+
+    <div class="card-group container">
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5>Card title</h5>
+            <p>가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5>Card title</h5>
+            <p>가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5>Card title</h5>
+            <p>가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+      </div>
+
+    <script>
+
+        var 출석부 = ['흥민', '영희', '철수', '재석']
+
+        function 이름찾기(name) {
+            출석부.forEach(function(i) {
+                if (출석부[i] == '철수') {
+                    console.log('있어요');
+                } else {
+                    console.log('');
+                }
+            });
+        }
+
+        이름찾기('철수');
+
+        
+        var pants = [28, 30, 32, 34];
+        var shirts = [95, 100, 105];
+
+        // <input>의 값 변경할때 input 이벤트 발동
+        // 바지 선택하면 28, 30 옵션 나오게 ?
+        $('.form-select').eq(0).on('input', function(e) {
+            // var value = this.value;
+            var value = e.currentTarget.value;
+            // 셔츠를 클릭하면 숨겨져있던 select가 다시 보이도록 한다 
+            if (value == '셔츠') {
+                // var 셔츠템 = `<option>95</option>
+                // <option>100</option>`;
+            // console.log($('.form-select').eq(0).val())
+                $('.form-select').eq(1).removeClass('form-hide');
+                $('.form-select').eq(1).html('');
+                shirts.forEach(function(b) {
+                   $('.form-select').eq(1).append(`<option>${b}</option>`);
+                });
+                // $('.form-select').eq(1).html(셔츠템);
+                
+            } else if (value == '바지') {
+
+                $('.form-select').eq(1).removeClass('form-hide');
+                $('.form-select').eq(1).html('');
+                pants.forEach(function(a) {
+                    $('.form-select').eq(1).append(`<option>${a}</option>`);
+                });
+
+            } else {
+                $('.form-select').eq(1).addClass('form-hide');
+            }
+        });
+
+        var obj = {name : 'kim', age : 20}
+
+        for (var key in obj) {
+            console.log(obj[key]);
+        }
+        
+        var products = [
+            { id : 0, price : 70000, title : 'Blossom Dress' },
+            { id : 1, price : 50000, title : 'Springfield Shirt' },
+            { id : 2, price : 60000, title : 'Black Monastery' }
+        ];
+
+        $('.card-body h5').eq(0).html(products[0].title)
+        $('.card-body p').eq(0).html(products[0].price)
+        $('.card-body h5').eq(1).html(products[1].title)
+        $('.card-body p').eq(1).html(products[1].price)
+        $('.card-body h5').eq(2).html(products[2].title)
+        $('.card-body p').eq(2).html(products[2].price)
+
+        // document.querySelectorAll('.card-body h5')[0].innerHTML = products[0].title;
+        // document.querySelectorAll('.card-body p')[0].innerHTML = '가격 : ' + products[0].price;
+        // document.querySelectorAll('.card-body h5')[1].innerHTML = products[1].title;
+        // document.querySelectorAll('.card-body p')[1].innerHTML ='가격 : ' +  products[1].price;
+        // document.querySelectorAll('.card-body h5')[2].innerHTML = products[2].title;
+        // document.querySelectorAll('.card-body p')[2].innerHTML ='가격 : ' +  products[2].price;
+    </script>
+  </body>
+</html>

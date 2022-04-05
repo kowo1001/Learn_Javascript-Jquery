@@ -77,7 +77,7 @@
     <button class="slide-2">2</button>
     <button class="slide-3">3</button>
     <button class="next">다음</button>
-    <button class="next">이전</button>
+    <button class="pre">이전</button>
 
 
     <button id="test-btn">버튼</button>
@@ -91,6 +91,18 @@
     </div>
 
     <script>
+      // 검은 배경 누르면 모달창 닫는 기능 만들기
+      $('.black-bg').on('click', function(e) {
+        $('.black-bg').removeClass('show-modal');
+
+        e.target; // 유저가 실제로 누른 속성 출력
+        e.currentTarget; // 이벤트리스너 달린 곳
+        e.preventDefault(); // 이벤트 기본동작 막아줌
+        e.stopPropagation(); // 내 상위요소로 이벤트 버블링 막아줌
+        
+      })
+
+
       // 현재페이지 끝까지 스크롤 체크는?
       document.querySelector('html').scrollHeight
       document.querySelector('html').clientHeight
@@ -128,10 +140,17 @@
         
       });
 
-      var 지금사진 = 1; 
+      var 지금사진 = 0; 
       
+      $('.pre').on('click', function() {
+        $('.slide-container').css('transform', 'translateX(-'+ 지금사진 + '00vw');
+        console.log(지금사진);
+        지금사진 -= 1;
+      })
+
       $('.next').on('click', function() {
         $('.slide-container').css('transform', 'translateX(-'+ 지금사진 + '00vw)');
+        console.log(지금사진);
         지금사진 += 1;
       });
 
