@@ -54,6 +54,24 @@
 
     <script>
 
+        $.get('https://codingapple1.github.io/price.json')
+        .done( function(data) {
+          console.log(data.price)
+        })
+        .fail(function() {
+          console.log('실패함')
+        })
+
+        fetch('https://codingapple.github.io/price.json')
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+
+
         var 출석부 = ['흥민', '영희', '철수', '재석']
 
         function 이름찾기(name) {

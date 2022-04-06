@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="main.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Document</title>
+  </head>
+  <body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
+            <h5>Card title</h5>
+            <p>가격 : 70000</p>
+            </div>
+
+            <!-- 여기에 -->
+        </div>
+    </div>
+
+    <div class="container">
+        <button class="btn btn-danger" id="more">더보기</button>
+    </div>
+
+    <!-- // 버튼 누르면 products 안의 데이터를 가격순 정렬? -->
+    <div class="container my-3">
+        <button class="btn btn-danger" id="price">가격순정렬</button>
+    </div>
+
+    <!-- // 상품명 다나가순 정렬 버튼과 기능 -->
+    <div class="container my-3">
+        <button class="btn btn-danger" id="sort">다나가순 정렬</button>
+    </div>
+
+    <!-- // 6만원 이하 상문만 보기 버튼과 기능 -->
+    <div class="container my-3">
+        <button class="btn btn-danger" id="filter">6만원 이하 상문만 보기</button>
+    </div>
+
+    <script>
+        var array = ['다','가', '나'];
+        var newarr = array.sort(function(a, b) {
+            return -1
+        })
+        console.log(newarr);
+
+        // 다나가순 정렬
+        $('#sort').click(function() {
+            products.sort(function(a, b) {
+                return a - b
+                
+            })
+        })
+
+
+        // var 어레이 = [7, 3, 5, 2, 40];
+        
+        // var 새어레이 = 어레이.filter(function(a) {
+        //     return a < 4
+        // });
+        // console.log(새어레이)
+
+        // 데이터를 가격순 정렬
+        $('#price').click(function() {
+            products.sort(function(a, b) {
+                return a.price - b.price
+
+                $('.row').html('');
+
+                products.forEach((a) => {
+                    template(a)
+                })
+            });
+            console.log(products);
+        })
+
+        var morenum = 0;
+
+        $('#more').on('click', function(e) {
+            morenum += 1;
+            if (morenum == 1) {
+                $.get('https://codingapple1.github.io/js/more1.json')
+                .done(function(data) {
+                    data.forEach((a) => {
+                        template(a)
+                    })
+                    console.log(data)
+                }).fail(function() {
+                    console.log(error)
+                })
+            } else if (morenum == 2) {
+                $.get('https://codingapple1.github.io/js/more2.json')
+                .done(function(data) {
+                    data.forEach((a) => {
+                        template(a)
+                    })
+                    console.log(data)
+                }).fail(function() {
+                    console.log(error)
+                })
+            } else {
+                $('#more').hide();
+            }
+
+            function template(a) {
+                var 템플릿 = `<div class="col-sm-4">
+                <img src="https://via.placeholder.com/600" class="w-100">
+                <h5>${a.title}</h5>
+                <p>가격 : + ${a.price}</p>
+                </div>`
+                $('.row').append(템플릿)
+            }
+
+            // $.get('https://codingapple1.github.io/js/more1.json')
+            // .done(function(data) {
+            //     data.forEach((a) => {
+            //         var 템플릿 = `<div class="col-sm-4">
+            //         <img src="https://via.placeholder.com/600" class="w-100">
+            //         <h5>${a.title}</h5>
+            //         <p>가격 : + ${a.price}</p>
+            //         </div>`
+            //         $('.row').append(템플릿)
+            //     })
+            //     console.log(data)
+            // })
+            // .fail(function(error) {
+            //     console.log(error)
+            // })
+            // e.preventDefault;
+        })
+
+        
+
+        var products = [
+            { id: 0, price: 70000, title: 'Blossom Dress'},
+            { id: 1, price: 50000, title: 'Springfield Shirt'},
+            { id: 2, price: 60000, title: 'Black Monastery'}
+        ];
+
+        products.forEach((a, i) => {
+            var 템플릿 = `<div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
+            <h5>${a.title}</h5>
+            <p>가격 : + ${a.price}</p>
+            </div>`
+            $('.row').append(템플릿)
+        })
+
+
+    </script>
+  </body>
+</html>
