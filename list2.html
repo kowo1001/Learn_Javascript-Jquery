@@ -18,7 +18,6 @@
             <h5>Card title</h5>
             <p>가격 : 70000</p>
             </div>
-
             <!-- 여기에 -->
         </div>
     </div>
@@ -56,8 +55,6 @@
                 
             })
         })
-
-
         // var 어레이 = [7, 3, 5, 2, 40];
         
         // var 새어레이 = 어레이.filter(function(a) {
@@ -66,6 +63,7 @@
         // console.log(새어레이)
 
         // 데이터를 가격순 정렬
+    
         $('#price').click(function() {
             products.sort(function(a, b) {
                 return a.price - b.price
@@ -106,36 +104,33 @@
             } else {
                 $('#more').hide();
             }
+        })
+        
+        function template(a) {
+            var 템플릿 = `<div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
+            <h5>${a.title}</h5>
+            <p>가격 : + ${a.price}</p>
+            </div>`
+            $('.row').append(템플릿)
+        }
 
-            function template(a) {
+        $.get('https://codingapple1.github.io/js/more1.json')
+        .done(function(data) {
+            data.forEach((a) => {
                 var 템플릿 = `<div class="col-sm-4">
                 <img src="https://via.placeholder.com/600" class="w-100">
                 <h5>${a.title}</h5>
                 <p>가격 : + ${a.price}</p>
                 </div>`
                 $('.row').append(템플릿)
-            }
-
-            // $.get('https://codingapple1.github.io/js/more1.json')
-            // .done(function(data) {
-            //     data.forEach((a) => {
-            //         var 템플릿 = `<div class="col-sm-4">
-            //         <img src="https://via.placeholder.com/600" class="w-100">
-            //         <h5>${a.title}</h5>
-            //         <p>가격 : + ${a.price}</p>
-            //         </div>`
-            //         $('.row').append(템플릿)
-            //     })
-            //     console.log(data)
-            // })
-            // .fail(function(error) {
-            //     console.log(error)
-            // })
-            // e.preventDefault;
+            })
+            console.log(data)
         })
-
+        .fail(function(error) {
+            console.log(error)
+        })
         
-
         var products = [
             { id: 0, price: 70000, title: 'Blossom Dress'},
             { id: 1, price: 50000, title: 'Springfield Shirt'},
@@ -147,11 +142,16 @@
             <img src="https://via.placeholder.com/600" class="w-100">
             <h5>${a.title}</h5>
             <p>가격 : + ${a.price}</p>
+            <button class="buy" onClick="mart(${a.title})">구매</button>
             </div>`
             $('.row').append(템플릿)
         })
 
-
+        function mart(a) {
+            localStorage.setItem("상품명",a.title);
+            console.log(localStorage.getItem("상품명"));
+        }
+        
     </script>
   </body>
 </html>
